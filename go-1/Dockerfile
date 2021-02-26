@@ -1,9 +1,11 @@
 FROM golang:1.15 as build
 WORKDIR /build
 COPY . .
-RUN go build -o app
+ENV CGO_ENABLED=0
+RUN go build -a -ldflags \
+    '-extldflags "-static"' -o app
 
-FROM debian:10-slim
+FROM alpine
 WORKDIR /app
 COPY --from=build /build/app .
 CMD ["./app"]
