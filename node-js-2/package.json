@@ -1,0 +1,14 @@
+{
+  "name": "node-js-2",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^10.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "static-build": "next build && next export"
+  }
+}
