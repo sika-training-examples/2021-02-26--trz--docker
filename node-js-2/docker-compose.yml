@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  app:
+    image: node-js-2-example:1
+    build: .
+    ports:
+      - 8000:80
