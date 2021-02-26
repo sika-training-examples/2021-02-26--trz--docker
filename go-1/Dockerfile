@@ -5,7 +5,7 @@ ENV CGO_ENABLED=0
 RUN go build -a -ldflags \
     '-extldflags "-static"' -o app
 
-FROM alpine
+FROM scratch
 WORKDIR /app
 COPY --from=build /build/app .
 CMD ["./app"]

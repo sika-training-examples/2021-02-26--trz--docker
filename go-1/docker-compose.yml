@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-    image: go-1-example:3
+    image: go-1-example:4
     build: .
     ports:
       - 8000:80
