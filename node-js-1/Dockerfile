@@ -1,4 +1,5 @@
-FROM node:15-alpine
+ARG NODE_IMAGE_VERSION=15-slim
+FROM node:${NODE_IMAGE_VERSION}
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
