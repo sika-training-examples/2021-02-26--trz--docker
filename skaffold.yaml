@@ -8,6 +8,9 @@ build:
     - image: reg.istry.cz/trz/go-1
       context: ./go-1
       kaniko: {}
+    - image: reg.istry.cz/trz/dotnet-1
+      context: ./dotnet-1
+      kaniko: {}
   cluster: {}
 deploy:
   helm:
@@ -24,3 +27,9 @@ deploy:
           image: reg.istry.cz/trz/go-1
         valuesFiles:
           - ./.local-helm-values/go-1.yml
+      - name: dotnet-1
+        chartPath: ./charts/dotnet-1
+        artifactOverrides:
+          image: reg.istry.cz/trz/dotnet-1
+        valuesFiles:
+          - ./.local-helm-values/dotnet-1.yml

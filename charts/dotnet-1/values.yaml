@@ -1,0 +1,6 @@
+# Required
+host:
+
+# Optional
+replicas: 1
+image: reg.istry.cz/trz/dotnet-1
