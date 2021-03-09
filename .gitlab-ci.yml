@@ -25,3 +25,16 @@ deploy dev node-js-1:
   environment:
     name: dev
     url: https://node-js-1.$KUBE_INGRESS_BASE_DOMAIN
+    on_stop: stop dev node-js-1
+
+stop dev node-js-1:
+  stage: deploy dev
+  when: manual
+  allow_failure: false
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - helm uninstall node-js-1
+  environment:
+    name: dev
+    action: stop
