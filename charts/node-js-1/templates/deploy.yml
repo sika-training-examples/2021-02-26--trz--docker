@@ -11,6 +11,8 @@ spec:
   replicas: {{.Values.replicas}}
   template:
     metadata:
+      annotations:
+        release.revison: "{{.Release.Revision}}"
       labels:
         release: {{.Release.Name}}
     spec:
