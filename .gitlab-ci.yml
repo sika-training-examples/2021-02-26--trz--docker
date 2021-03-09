@@ -46,3 +46,18 @@ test dev:
     - deploy dev node-js-1
   script:
     - curl -i https://node-js-1.$DEV_BASE_DOMAIN
+
+deploy prod node-js-1:
+  stage: deploy prod
+  when: manual
+  script:
+    - helm upgrade --install node-js-1 ./charts/node-js-1
+      --wait
+      --set host=node-js-1.$KUBE_INGRESS_BASE_DOMAIN
+      --set image=$NODE_JS_1_IMAGE
+  environment:
+    name: prod
+    url: https://node-js-1.$KUBE_INGRESS_BASE_DOMAIN
+  only:
+    - master
+    - ci
