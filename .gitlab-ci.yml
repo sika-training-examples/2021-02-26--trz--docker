@@ -19,7 +19,7 @@ build node-js-1:
 deploy dev node-js-1:
   stage: deploy dev
   script:
-    - helm upgrade --install $CI_COMMIT_REF_SLUG ./charts/node-js-1
+    - helm upgrade --install node-$CI_COMMIT_REF_SLUG ./charts/node-js-1
       --wait
       --set host=$CI_COMMIT_REF_SLUG.$KUBE_INGRESS_BASE_DOMAIN
       --set image=$NODE_JS_1_IMAGE
@@ -35,7 +35,7 @@ stop dev node-js-1:
   variables:
     GIT_STRATEGY: none
   script:
-    - helm uninstall $CI_COMMIT_REF_SLUG
+    - helm uninstall node-$CI_COMMIT_REF_SLUG
   environment:
     name: dev/$CI_COMMIT_REF_SLUG
     action: stop
