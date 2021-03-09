@@ -1,0 +1,17 @@
+image: sikalabs/ci
+
+stages:
+  - build
+  - deploy dev
+  - test dev
+  - deploy prod
+
+variables:
+  NODE_JS_1_IMAGE: $CI_REGISTRY_IMAGE/node-js-1
+
+build node-js-1:
+  stage: build
+  script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+    - docker build -t $NODE_JS_1_IMAGE ./node-js-1
+    - docker push $NODE_JS_1_IMAGE
