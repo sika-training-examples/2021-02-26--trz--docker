@@ -7,7 +7,7 @@ stages:
   - deploy prod
 
 variables:
-  NODE_JS_1_IMAGE: $CI_REGISTRY_IMAGE/node-js-1
+  NODE_JS_1_IMAGE: $CI_REGISTRY_IMAGE/node-js-1:$CI_COMMIT_REF_SLUG
 
 build node-js-1:
   stage: build
@@ -19,13 +19,13 @@ build node-js-1:
 deploy dev node-js-1:
   stage: deploy dev
   script:
-    - helm upgrade --install node-js-1 ./charts/node-js-1
+    - helm upgrade --install $CI_COMMIT_REF_SLUG ./charts/node-js-1
       --wait
-      --set host=node-js-1.$KUBE_INGRESS_BASE_DOMAIN
+      --set host=$CI_COMMIT_REF_SLUG.$KUBE_INGRESS_BASE_DOMAIN
       --set image=$NODE_JS_1_IMAGE
   environment:
-    name: dev
-    url: https://node-js-1.$KUBE_INGRESS_BASE_DOMAIN
+    name: dev/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG.$KUBE_INGRESS_BASE_DOMAIN
     on_stop: stop dev node-js-1
 
 stop dev node-js-1:
@@ -35,9 +35,9 @@ stop dev node-js-1:
   variables:
     GIT_STRATEGY: none
   script:
-    - helm uninstall node-js-1
+    - helm uninstall $CI_COMMIT_REF_SLUG
   environment:
-    name: dev
+    name: dev/$CI_COMMIT_REF_SLUG
     action: stop
 
 test dev:
@@ -45,7 +45,7 @@ test dev:
   needs:
     - deploy dev node-js-1
   script:
-    - curl -i https://node-js-1.$DEV_BASE_DOMAIN
+    - curl -i https://$CI_COMMIT_REF_SLUG.$DEV_BASE_DOMAIN
 
 deploy prod node-js-1:
   stage: deploy prod
