@@ -20,6 +20,7 @@ deploy dev node-js-1:
   stage: deploy dev
   script:
     - helm upgrade --install node-js-1 ./charts/node-js-1
+      --wait
       --set host=node-js-1.$KUBE_INGRESS_BASE_DOMAIN
       --set image=$NODE_JS_1_IMAGE
   environment:
