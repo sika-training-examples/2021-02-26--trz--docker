@@ -4,12 +4,15 @@
   "license": "MIT",
   "dependencies": {
     "next": "^10.0.7",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prettier-check": "prettier -l \"**/*.js\"",
+    "prettier-write": "prettier --write \"**/*.js\""
   }
 }
