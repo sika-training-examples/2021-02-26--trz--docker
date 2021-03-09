@@ -20,6 +20,12 @@ prettier node-js-1:
     - yarn
     - yarn run prettier-check
 
+editorconfig:
+  stage: lint
+  image: mstruebing/editorconfig-checker
+  script:
+    - ec
+
 build node-js-1:
   stage: build
   script:
