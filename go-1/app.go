@@ -9,7 +9,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello TRZ! ")
 	fmt.Fprintf(w, hostname)
 	fmt.Fprintf(w, "\n")
-  fmt.Println(r)
+	fmt.Println(r)
 }
 
 func main() {

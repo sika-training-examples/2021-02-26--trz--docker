@@ -3,7 +3,7 @@ WORKDIR /build
 COPY . .
 ENV CGO_ENABLED=0
 RUN go build -a -ldflags \
-    '-extldflags "-static"' -o app
+  '-extldflags "-static"' -o app
 
 FROM scratch
 WORKDIR /app
