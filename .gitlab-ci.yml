@@ -50,6 +50,8 @@ test dev:
 deploy prod node-js-1:
   stage: deploy prod
   when: manual
+  needs:
+    - test dev
   script:
     - helm upgrade --install node-js-1 ./charts/node-js-1
       --wait
