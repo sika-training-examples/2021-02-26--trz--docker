@@ -7,7 +7,7 @@ stages:
   - deploy prod
 
 variables:
-  NODE_JS_1_IMAGE: $CI_REGISTRY_IMAGE/node-js-1:$CI_COMMIT_REF_SLUG
+  NODE_JS_1_IMAGE: $CI_REGISTRY_IMAGE/node-js-1:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID
 
 build node-js-1:
   stage: build
