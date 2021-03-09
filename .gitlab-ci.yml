@@ -38,3 +38,10 @@ stop dev node-js-1:
   environment:
     name: dev
     action: stop
+
+test dev:
+  stage: test dev
+  needs:
+    - deploy dev node-js-1
+  script:
+    - curl -i https://node-js-1.$DEV_BASE_DOMAIN
